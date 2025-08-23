@@ -102,4 +102,4 @@ VITE_API_URL=http://localhost:8080
 
 ## 🙏 Acknowledgements
 
-This project was built based on the excellent MERN stack tutorial by **Adrian Hajdin**. This version has been adapted to use the free and powerful Hugging Face Inference API for image generation.
+This project was built based on the excellent MERN stack by **MOHAMED RIYAZ** from fxec. This version has been adapted to use the free and powerful Hugging Face Inference API for image generation.
