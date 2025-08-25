@@ -1,7 +1,9 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import fetch from 'node-fetch';
-import FormData from 'form-data';
+
+// FormData is no longer needed for this API
+// import FormData from 'form-data';
 
 dotenv.config();
 
@@ -25,21 +27,27 @@ router.route('/').post(async (req, res) => {
   try {
     const { prompt } = req.body;
 
-    // Stability AI's API expects the prompt in a specific JSON structure within form-data
-    const formData = new FormData();
-    formData.append('text_prompts[0][text]', prompt);
-    formData.append('samples', 1);
-    formData.append('cfg_scale', 7);
-    formData.append('steps', 30);
+    // The API now expects a standard JSON body
+    const payload = {
+      text_prompts: [
+        {
+          text: prompt,
+        },
+      ],
+      cfg_scale: 7,
+      steps: 30,
+      samples: 1,
+    };
 
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
-        ...formData.getHeaders(),
+        // We now explicitly set the Content-Type to application/json
+        'Content-Type': 'application/json',
         Accept: 'application/json',
         Authorization: `Bearer ${process.env.STABILITY_API_KEY}`,
       },
-      body: formData,
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
