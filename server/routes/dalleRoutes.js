@@ -9,8 +9,9 @@ dotenv.config();
 
 const router = express.Router();
 
-// Stability AI API endpoint
-const API_URL = 'https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image';
+// *** THIS IS THE UPDATED API URL ***
+// It now points to the latest Stable Diffusion XL model
+const API_URL = 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image';
 
 router.route('/').get((req, res) => {
   res.status(200).json({ message: 'Hello from Stability AI DALL-E route!' });
